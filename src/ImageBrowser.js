@@ -33,7 +33,10 @@ export default class ImageBrowser extends React.Component {
     this.setState({numColumns});
     this.getPhotos();
   }
-
+  componentWillUnmount() {
+    ScreenOrientation.removeOrientationChangeListeners()
+  }
+  
   getPermissionsAsync = async () => {
     const {status: camera} = await Permissions.askAsync(Permissions.CAMERA);
     const {status: cameraRoll} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
